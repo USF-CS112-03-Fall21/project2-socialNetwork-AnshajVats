@@ -25,6 +25,27 @@ public class SocialNetwork {
 	public void readProfiles(String filename) {
 		// FILL IN CODE: read profiles from the file
 		// You are required to use the BufferedReader for this method
+		
+		try(FileReader fr = new FileReader(filename)){
+			BufferedReader br = new BufferedReader(fr);
+			String line;
+			while((line = br.readLine()) != null){
+				//System.out.println(line);
+				String[] array = line.split("; ");
+				String nameOfProfile = array[0];
+				String password = array[1];
+				Profile classProfile = new Profile(nameOfProfile, password);
+				String[] friendName = array[2].split(", ");
+				for(String name : friendName){
+					classProfile.startingFriends(name);
+				}
+				profiles.add(classProfile);
+			}
+
+		}
+		catch(IOException e){
+			System.out.println(e);
+		}
 
 
 	}
@@ -39,6 +60,12 @@ public class SocialNetwork {
 	 */
 	public Profile getProfile(String name) {
 		// FILL IN CODE
+		for(Profile checkProfile : profiles)
+		{
+			if(name.equals(checkProfile.getName())){
+				return checkProfile;
+			}
+		}
 
 		return null;
 	}

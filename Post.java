@@ -20,6 +20,10 @@ public class Post implements Comparable<Post> { // Implements Comparable so that
 		// Record the current time and assign to this.time:
 		// First, create an instance of Calendar using Calendar.getInstance();
 		// Then, call getTimeInMillis() method from class Calendar to get the current time
+		this.name = name;
+		this.message = message;
+		Calendar c = Calendar.getInstance();
+		this.time = c.getTimeInMillis();
 
 	}
 
@@ -30,6 +34,9 @@ public class Post implements Comparable<Post> { // Implements Comparable so that
 	 */
 	public Post(String name, String message, long time) {
 		// FILL IN CODE	
+		this.name = name;
+		this.message = message;
+		this.time = time;
 		
 		
 	}
@@ -39,14 +46,33 @@ public class Post implements Comparable<Post> { // Implements Comparable so that
 	public int compareTo(Post o) {
 		// FILL IN CODE
 		// Compare posts based on the time. More recent post should be "less than" an older post.
+		if(this.time < o.time){
+			return -1;
+		}
+		else if(this.time == o.time){
+			if(this.name == o.name)
+				return 0;
+			else if(this.name.length() < o.name.length())
+				return -1;
+			else
+				return 1;
+		}
+		else 
+			return 1;
 
 
-		return 0; // change it as needed
+		 // change it as needed
 	}
 
 	public String toString() {
 		String s = "";
 		// FILL IN CODE to return name, time and the message on the next line.
+		String dateFormat = "dd-MM-yyyy hh:mm";
+
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat);
+
+		String normalDateTime = simpleDateFormat.format(time);
+		s=s +  message + " [ posted by " + name +", " + normalDateTime + "] ";
 		
 
 		return s;

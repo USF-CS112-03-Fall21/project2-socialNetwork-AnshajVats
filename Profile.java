@@ -10,6 +10,11 @@ import java.io.*;
 public class Profile {
 	// TODO: Create instance variables: name, password, friends and posts.
 	// Store friends and posts in ArrayList-s
+	private String name;
+	private String password;
+	private ArrayList<String> friends;
+	private ArrayList<Post> posts;
+
 
 	/**
 	 * Constructor for class Profile
@@ -19,7 +24,23 @@ public class Profile {
 	public Profile(String name, String password) {
 		// FILL IN CODE: assign values to this.name and this.password
 		// Initialize friends and posts ArrayList-s
+		this.name = name;
+		this.password = password;
+		friends = new ArrayList<>();
+		posts = new ArrayList<>();
 		
+	}
+
+	/* adds friend to the arraylist of the friends*/
+	public void startingFriends(String friendName){
+		friends.add(friendName);
+	}
+
+
+	
+	//retruns the name of the profile
+	public String getName(){
+		return name;
 	}
 
 	/** 
@@ -31,9 +52,11 @@ public class Profile {
 	 */
 	public boolean authenticate(String name, String password) {
 		
-		// FILL IN CODE
+		// FILL IN CODe
+		//System.out.println(password);
 
-		return true; // change
+
+		return this.password.equals(password) && this.name.equals(name);
 	}
 
 	// FILL IN CODE: Add other getters as needed
@@ -45,6 +68,7 @@ public class Profile {
 	 */
 	public void addPost(String name, String message) {
 		// FILL IN CODE
+		posts.add(new Post(name, message));
 		
 	}
 
@@ -56,8 +80,31 @@ public class Profile {
 	public ArrayList<Post> getPosts() { // sorted by time, most recent first
 		ArrayList<Post> copyOfPosts = new ArrayList<>();
 		// FILL IN CODE
+		for(int i = 0; i < posts.size(); i++){
+			copyOfPosts.add(posts.get(i));
+		}
+		Collections.sort(copyOfPosts);
 
 		return copyOfPosts;
+	}
+
+	public ArrayList<Post> newFeeds(SocialNetwork sn){
+		ArrayList<Post> copyOfFriendPosts = new ArrayList<>();
+		ArrayList<Post> tempHoldsArrayList = new ArrayList<>();
+		for(int i = 0; i < friends.size(); i++)
+		{
+			Profile frindProfile = sn.getProfile(friends.get(i));
+			 tempHoldsArrayList = frindProfile.getPosts();
+			 for(Post p : tempHoldsArrayList)
+			 	copyOfFriendPosts.add(p);
+		}
+
+		Collections.sort(copyOfFriendPosts);
+
+
+		return copyOfFriendPosts;
+
+
 	}
 
 	/**
@@ -71,9 +118,16 @@ public class Profile {
 	 */
 	public boolean addFriend(String newFriend, SocialNetwork sn) {
 		// FILL IN CODE
-		
-		return true;  // change as needed
+		if(!friends.contains(newFriend)){
+			this.friends.add(newFriend);
+			sn.getProfile(newFriend).friends.add(name);
+			return true;
+		}
 
+		else{
+			return false;
+		}
+		  // change as needed
 	}
 
 
@@ -84,6 +138,9 @@ public class Profile {
 	public ArrayList<String> getFriends() {
 		ArrayList<String> copyOfFriends = new ArrayList<>();
 		// FILL IN CODE
+		for(String nameOfFriend : friends){
+			copyOfFriends.add(nameOfFriend);
+		}
 
 		return copyOfFriends;
 	}
@@ -104,6 +161,16 @@ public class Profile {
 		// Use a StringBuilder, append all info to the StringBuilder, then call
 		// sb.toString() to return a string
 		StringBuilder sb = new StringBuilder();
+		String buildName="Name:"+ name + System.lineSeparator() + System.lineSeparator();
+		sb.append(buildName);
+		String buildPost = "Post:" + System.lineSeparator();
+		String addPostString = "";
+		for(Post p : getPosts()){
+			addPostString = addPostString + p.toString() +System.lineSeparator();
+
+		}
+		buildPost = buildPost + addPostString;
+		sb.append(buildPost);
 		// FILL IN CODE
 		
 		
