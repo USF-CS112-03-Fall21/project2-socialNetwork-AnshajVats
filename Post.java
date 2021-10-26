@@ -42,23 +42,27 @@ public class Post implements Comparable<Post> { // Implements Comparable so that
 	}
 
 	// Add getters as needed
+	public String getName(){
+		return name;
+	}
+	public String getMessage(){
+		return message;
+	}
+	public Long getTime(){
+		return time;
+	}
 
 	public int compareTo(Post o) {
 		// FILL IN CODE
 		// Compare posts based on the time. More recent post should be "less than" an older post.
 		if(this.time < o.time){
-			return -1;
+			return 1;
 		}
 		else if(this.time == o.time){
-			if(this.name == o.name)
-				return 0;
-			else if(this.name.length() < o.name.length())
-				return -1;
-			else
-				return 1;
+			return 0;
 		}
 		else 
-			return 1;
+			return -1;
 
 
 		 // change it as needed

@@ -10,12 +10,6 @@ public class InteractiveSession {
 		myWorld.readProfiles(args[0]); // we assume the name of the file with profiles is passed as a command line argument to the main method
 		// To call the program, run 
 		// java InteractiveSession profiles.csv
-		if(myWorld.getProfile("Pablo") != null)
-		{
-			System.out.println(myWorld.getProfile("Helen").getFriends());
-		}
-		else
-			System.out.println("profile not found");
 		
 		InteractiveSession ui = new InteractiveSession();
 		ui.interactWithUser(myWorld);
@@ -31,8 +25,8 @@ public class InteractiveSession {
 
 		Scanner sc = new Scanner(System.in);
 		String choice = "";
-		int count =0;
 		String name="";
+		Profile currProfile=null;
 		// FILL IN CODE as needed
 		while (!choice.equals("Q")) {
 			System.out.println();
@@ -53,10 +47,11 @@ public class InteractiveSession {
 				System.out.println("Enter the password:");
 				String password = sc.nextLine();
 				System.out.println(checkingUsernameAndPassword(name, password, myWorld));
+				currProfile = myWorld.getProfile(name);
 
-				count++;		
+						
 			}
-			else if(choice.equals("2") && count != 0){
+			else if(choice.equals("2") && currProfile != null){
 				System.out.println("Enter the name of the friend you want to add");
 				String friendName=sc.nextLine();
 				System.out.println(checksTheProfileOfTheFriend(friendName, myWorld, name));
@@ -64,27 +59,35 @@ public class InteractiveSession {
 			}
 			
 
-			else if(choice.equals("3") && count != 0){
-				System.out.println(myWorld.getProfile(name).getFriends());
+			else if(choice.equals("3") && currProfile != null){
+				System.out.println(currProfile.getFriends());
 			}
-			else if(choice.equals("4") && count != 0){
+			else if(choice.equals("4") && currProfile != null){
 				System.out.println("Enter your post");
 				String message = sc.nextLine();
-				myWorld.getProfile(name).addPost(name, message);
+				currProfile.addPost(name, message);
 			}
-			else if(choice.equals("5") && count != 0){
+			else if(choice.equals("5") && currProfile != null){
 
-				for(Post s : myWorld.getProfile(name).getPosts())
+				for(Post s : currProfile.getPosts())
 					System.out.println(s);
 			}
-			else if(choice.equals("6") && count != 0){
+			else if(choice.equals("6") && currProfile != null){
 
-				for(Post s : myWorld.getProfile(name).newFeeds(myWorld))
+				for(Post s : currProfile.newFeeds(myWorld))
 					System.out.println(s);
-				System.out.println(myWorld.getProfile(name));
+				
 			}
-			else {
-				System.out.println("You have to log in first and only type number between [1,7]");
+			else if(choice.equals("7") && currProfile != null){
+
+				currProfile.writeProfileToFile("Output/"+name);
+			}
+			else if(currProfile ==null && (!choice.equals("Q"))) {
+				System.out.println("You have to log in first");
+			}
+			else if(!(choice.equals("3")) && (!choice.equals("4")) && (!choice.equals("5")) && (!choice.equals("6")) 
+				&& (!choice.equals("2")) && (!choice.equals("1")) && (!choice.equals("7")) && (!choice.equals("Q"))){
+				System.out.println("Enter a number between 1-7 or Q");
 			}
 
 			System.out.println("*****************************************");

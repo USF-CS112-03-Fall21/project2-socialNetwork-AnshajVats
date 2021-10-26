@@ -81,7 +81,9 @@ public class Profile {
 		ArrayList<Post> copyOfPosts = new ArrayList<>();
 		// FILL IN CODE
 		for(int i = 0; i < posts.size(); i++){
-			copyOfPosts.add(posts.get(i));
+			Post p =posts.get(i);
+			Post copyOfP= new Post(p.getName(), p.getMessage(), p.getTime());
+			copyOfPosts.add(copyOfP);
 		}
 		Collections.sort(copyOfPosts);
 
@@ -169,8 +171,13 @@ public class Profile {
 			addPostString = addPostString + p.toString() +System.lineSeparator();
 
 		}
-		buildPost = buildPost + addPostString;
+		buildPost = buildPost + addPostString + System.lineSeparator();
 		sb.append(buildPost);
+		String stringOfFriends = "";
+		for(String f : friends){
+			stringOfFriends = stringOfFriends + f + ", ";
+		}
+		sb.append("Friends:" + stringOfFriends);
 		// FILL IN CODE
 		
 		
@@ -196,6 +203,17 @@ public class Profile {
 	public void writeProfileToFile(String filename) {
 		// FILL IN CODE
 		// Hint: use toString method to get the String representation of this profile
+		try( PrintWriter writer = new PrintWriter(filename) ){
+
+			String line = toString();
+			writer.println(line);
+			writer.flush();
+
+		}
+		catch(IOException e){
+			System.out.println(e);
+		}
+		System.out.println("Successfully put on the file");
 
 	}
 }
