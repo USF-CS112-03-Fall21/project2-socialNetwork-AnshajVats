@@ -61,7 +61,7 @@ public class InteractiveSession {
 
 			else if(choice.equals("3") && currProfile != null){
 				System.out.println(currProfile.getName() + "'s friends are:");
-				ArrayList<String> postOfFriends = currProfile.getFriends();
+				//ArrayList<String> postOfFriends = currProfile.getFriends();
 				for(String s : currProfile.getFriends()){
 					System.out.println(s);
 				}
