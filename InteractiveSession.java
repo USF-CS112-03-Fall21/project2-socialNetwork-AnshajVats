@@ -101,6 +101,8 @@ public class InteractiveSession {
 		}
 
 	}
+	// checks the password and and returns a string. 
+	// takes  String name, String password, SocialNetwork myWorld. 
 	public String checkingUsernameAndPassword(String name, String password, SocialNetwork myWorld){
 		String login="";
 		 if(myWorld.getProfile(name) != null)
@@ -121,6 +123,8 @@ public class InteractiveSession {
 
 		 return login;
 	}
+	// returns a string. 
+	// takes the parameter String friendName, SocialNetwork myWorld, String name. 
 	public String checksTheProfileOfTheFriend(String friendName, SocialNetwork myWorld, String name){
 		String login="";
 		 if(myWorld.getProfile(friendName) != null)

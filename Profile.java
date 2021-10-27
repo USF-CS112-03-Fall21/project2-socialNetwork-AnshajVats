@@ -90,6 +90,8 @@ public class Profile {
 		return copyOfPosts;
 	}
 
+	// returns a copy of friends post and more recent ones first
+
 	public ArrayList<Post> newFeeds(SocialNetwork sn){
 		ArrayList<Post> copyOfFriendPosts = new ArrayList<>();
 		ArrayList<Post> tempHoldsArrayList = new ArrayList<>();
@@ -102,6 +104,8 @@ public class Profile {
 		}
 
 		Collections.sort(copyOfFriendPosts);
+
+		
 
 
 		return copyOfFriendPosts;

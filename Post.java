@@ -42,15 +42,19 @@ public class Post implements Comparable<Post> { // Implements Comparable so that
 	}
 
 	// Add getters as needed
+	// returns name
 	public String getName(){
 		return name;
 	}
+	// returns message
 	public String getMessage(){
 		return message;
 	}
+	// returns time
 	public Long getTime(){
 		return time;
 	}
+	//compares post based on the time
 
 	public int compareTo(Post o) {
 		// FILL IN CODE
