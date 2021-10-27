@@ -78,7 +78,7 @@ public class InteractiveSession {
 
 				for(Post s : currProfile.newFeeds(myWorld)){
 					System.out.println(s);
-					System.out.println(s.getTime());
+					
 				}
 
 				
