@@ -26,7 +26,7 @@ public class InteractiveSession {
 		Scanner sc = new Scanner(System.in);
 		String choice = "";
 		String name="";
-		Profile currProfile=null;
+		Profile currProfile = null;
 		// FILL IN CODE as needed
 		while (!choice.equals("Q")) {
 			System.out.println();
@@ -53,7 +53,7 @@ public class InteractiveSession {
 			}
 			else if(choice.equals("2") && currProfile != null){
 				System.out.println("Enter the name of the friend you want to add");
-				String friendName=sc.nextLine();
+				String friendName = sc.nextLine();
 				System.out.println(checksTheProfileOfTheFriend(friendName, myWorld, name));
 
 			}
@@ -87,7 +87,7 @@ public class InteractiveSession {
 
 				currProfile.writeProfileToFile("Output/"+name);
 			}
-			else if(currProfile ==null && (!choice.equals("Q"))) {
+			else if(currProfile == null && (!choice.equals("Q"))) {
 				System.out.println("You have to log in first");
 			}
 			else if(!(choice.equals("3")) && (!choice.equals("4")) && (!choice.equals("5")) && (!choice.equals("6")) 
@@ -104,7 +104,7 @@ public class InteractiveSession {
 	// checks the password and and returns a string. 
 	// takes  String name, String password, SocialNetwork myWorld. 
 	public String checkingUsernameAndPassword(String name, String password, SocialNetwork myWorld){
-		String login="";
+		String login = "";
 		 if(myWorld.getProfile(name) != null)
 				 {
 						 if(myWorld.getProfile(name).authenticate(name, password)){
@@ -126,7 +126,7 @@ public class InteractiveSession {
 	// returns a string. 
 	// takes the parameter String friendName, SocialNetwork myWorld, String name. 
 	public String checksTheProfileOfTheFriend(String friendName, SocialNetwork myWorld, String name){
-		String login="";
+		String login = "";
 		 if(myWorld.getProfile(friendName) != null)
 				 {
 				 	if(myWorld.getProfile(name).addFriend(friendName, myWorld)){
@@ -146,3 +146,4 @@ public class InteractiveSession {
 
 	}
 }
+ 

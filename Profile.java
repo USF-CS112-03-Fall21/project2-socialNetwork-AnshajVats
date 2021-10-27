@@ -81,8 +81,8 @@ public class Profile {
 		ArrayList<Post> copyOfPosts = new ArrayList<>();
 		// FILL IN CODE
 		for(int i = 0; i < posts.size(); i++){
-			Post p =posts.get(i);
-			Post copyOfP= new Post(p.getName(), p.getMessage(), p.getTime());
+			Post p = posts.get(i);
+			Post copyOfP = new Post(p.getName(), p.getMessage(), p.getTime());
 			copyOfPosts.add(copyOfP);
 		}
 		Collections.sort(copyOfPosts);
@@ -167,7 +167,7 @@ public class Profile {
 		// Use a StringBuilder, append all info to the StringBuilder, then call
 		// sb.toString() to return a string
 		StringBuilder sb = new StringBuilder();
-		String buildName="Name:"+ name + System.lineSeparator() + System.lineSeparator();
+		String buildName = "Name:"+ name + System.lineSeparator() + System.lineSeparator();
 		sb.append(buildName);
 		String buildPost = "Post:" + System.lineSeparator();
 		String addPostString = "";
