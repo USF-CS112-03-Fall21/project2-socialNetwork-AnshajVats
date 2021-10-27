@@ -99,7 +99,7 @@ public class InteractiveSession {
 				System.out.println("Enter a number between 1-7 or Q");
 			}
 
-			System.out.println("*****************************************");
+			System.out.println("********************************************");
 
 
 		}
