@@ -69,13 +69,18 @@ public class InteractiveSession {
 			}
 			else if(choice.equals("5") && currProfile != null){
 
-				for(Post s : currProfile.getPosts())
+				for(Post s : currProfile.getPosts()){
 					System.out.println(s);
+				
+				}
 			}
 			else if(choice.equals("6") && currProfile != null){
 
-				for(Post s : currProfile.newFeeds(myWorld))
+				for(Post s : currProfile.newFeeds(myWorld)){
 					System.out.println(s);
+					System.out.println(s.getTime());
+				}
+
 				
 			}
 			else if(choice.equals("7") && currProfile != null){

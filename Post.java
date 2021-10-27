@@ -59,7 +59,7 @@ public class Post implements Comparable<Post> { // Implements Comparable so that
 			return 1;
 		}
 		else if(this.time == o.time){
-			return 0;
+			return name.compareTo(o.name);
 		}
 		else 
 			return -1;
